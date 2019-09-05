@@ -1,0 +1,80 @@
+PUT _template/nginx
+{
+  "index_patterns": ["nginx-*"],
+  "settings": {
+    "number_of_shards": 1
+  },
+   "mappings" : {
+      "properties" : {
+         "tags" : {
+            "type" : "keyword"
+         },
+         "message" : {
+            "type" : "text"
+         },
+         "process.name" : {
+            "type" : "keyword"
+         },
+         "host" : {
+            "properties" : {
+               "ip" : {
+                  "type" : "ip"
+               },
+               "name" : {
+                  "type" : "keyword"
+               }
+            }
+         },
+         "url" : {
+            "properties" : {
+               "original" : {
+                  "type" : "keyword"
+               }
+            }
+         },
+         "user_agent" : {
+            "properties" : {
+               "original" : {
+                  "type" : "keyword"
+               }
+            }
+         },
+         "source" : {
+            "properties" : {
+               "address" : {
+                  "type" : "keyword"
+               },
+               "port" : {
+                  "type" : "integer"
+               },
+               "geo.location" : {
+                  "type" : "geo_point"
+               },
+               "ip" : {
+                  "type" : "ip"
+               }
+            }
+         },
+         "http" : {
+            "properties" : {
+               "response.status_code" : {
+                  "type" : "long"
+               },
+               "response.body.bytes" : {
+                  "type" : "long"
+               },
+               "request.method" : {
+                  "type" : "keyword"
+               },
+               "version" : {
+                  "type" : "keyword"
+               },
+               "request.referrer" : {
+                  "type" : "keyword"
+               }
+            }
+         }
+      }
+   }
+}
+
